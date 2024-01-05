@@ -30,6 +30,7 @@ body {
 
 a:hover .bi {
     color: orange !important;
+    cursor: pointer;
 }
 
 .letter {

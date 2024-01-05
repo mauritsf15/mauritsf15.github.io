@@ -1,17 +1,3 @@
-const instagram = document.querySelector('.fa-instagram');
-const discord = document.querySelector('.fa-discord');
-const github = document.querySelector('.fa-github');
-const tiktok = document.querySelector('.fa-tiktok');
-
-function insta() {
-
-}
-
-// instagram.addEventListener('click', insta);
-// discord.addEventListener('click', disc);
-// github.addEventListener('click', gith);
-// tiktok.addEventListener('click', tikt);
-
 // animation
 
 const subtext = document.querySelector('h6');
@@ -42,8 +28,5 @@ function animate() {
 prepare();
 setTimeout(animate, 1000);
 
-
-let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl)
-})
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
