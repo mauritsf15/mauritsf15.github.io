@@ -1,20 +1,68 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 
-:root[data-theme="light"] {
-    --text: #141918;
-    --background: #ecf3f2;
-    --primary: #285c57;
-    --secondary: #81d9d1;
-    --accent: #23b8a9;
+:root[data-theme="1"] {
+    --text: #d7defa;
+    --background: #030615;
+    --primary: #889bef;
+    --secondary: #908813;
+    --accent: #5de747;
 }
-:root[data-theme="dark"] {
-    --text: #e6ebea;
-    --background: #0b1211;
-    --primary: #a3d7d2;
-    --secondary: #257d74;
-    --accent: #48dccd;
+:root[data-theme="2"] {
+    --text: #dee8fb;
+    --background: #040c1e;
+    --primary: #8caff0;
+    --secondary: #391393;
+    --accent: #9e46e7;
 }
-
+:root[data-theme="3"] {
+    --text: #f1dceb;
+    --background: #11060d;
+    --primary: #df9cc9;
+    --secondary: #7f2562;
+    --accent: #cf4ba5;
+}
+:root[data-theme="4"] {
+    --text: #ebf8ee;
+    --background: #071209;
+    --primary: #9adaac;
+    --secondary: #2f4682;
+    --accent: #6249bd;
+}
+:root[data-theme="5"] {
+    --text: #f4f3e8;
+    --background: #1d1b0a;
+    --primary: #e3dd99;
+    --secondary: #837b1b;
+    --accent: #e4d739;    
+}
+:root[data-theme="6"] {
+    --text: #f3dfdd;
+    --background: #0f0504;
+    --primary: #e58f8a;
+    --secondary: #8a1d16;
+    --accent: #e9443a;    
+}
+:root[data-theme="7"] {
+    --text: #e5f1e4;
+    --background: #091109;
+    --primary: #9dcf9f;
+    --secondary: #386773;
+    --accent: #597cad;    
+}
+:root[data-theme="8"] {
+    --text: #f7ebdd;
+    --background: #140c05;
+    --primary: #e6c194;
+    --secondary: #1f5585;
+    --accent: #9351d7;    
+}
+:root[data-theme="9"] {
+    --text: #d4e4fe;
+    --background: #00040b;
+    --primary: #7cb1fd;
+    --secondary: #3f02ae;
+    --accent: #a01bfc;    
+}
 
 body {
     background-color: var(--background) !important;
@@ -61,7 +109,7 @@ body {
 }
 
 .three-d:hover {
-    text-shadow: -15px 15px var(--accent), -40px 30px var(--secondary);
+    text-shadow: -15px 15px var(--primary), -40px 30px var(--secondary);
 }
 
 .bi-code-slash {
@@ -85,8 +133,7 @@ body {
     transition-duration: 0.3s;
 }
 
-.mau-btn:hover,
-.mau-btn:focus {
+.mau-btn:hover {
     box-shadow: inset 0 -50px 0 0 var(--accent);
     color: var(--background) !important;
     scale: 1.05;
@@ -97,22 +144,32 @@ body:has(#projects:target) .bi-code-slash {
 }
 
 body:has(#projects:target) .bi-code-slash:hover {
-    text-shadow: -10px 10px var(--accent), -20px 15px var(--secondary);
-}
-
-body:has(#projects:target) .hero {
-    height: 20vh;
-    width: 50vw;
-}
-
-body:has(#projects:target) .project-btn {
-    opacity: 0;
-    cursor:default;
+    text-shadow: -10px 10px var(--accent), -20px 15px var(--primary);
 }
 
 .projects {
     height: 80vh;
     padding-top: 5px;
+}
+
+.project-div {
+    display: flex;
+}
+
+.project {
+    padding: 10px;
+    flex: 0.3;
+}
+
+body:has(#projects:target) {
+    overflow-y: auto;
+}
+
+@media only screen and (min-width: 768px) {
+    body:has(#projects:target) .hero {
+        height: 20vh;
+        width: 50vw;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -130,5 +187,13 @@ body:has(#projects:target) .project-btn {
 
     body:has(#projects:target) .bi-code-slash {
         font-size: 3rem;
+    }
+
+    body:has(#projects:target) .hero {
+        height: 20vh;
+    }
+
+    body:has(#projects:target) .right-hero {
+        display: none;
     }
 }
