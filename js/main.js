@@ -53,6 +53,8 @@ if (window.location.href.includes('projects')) {
     button.attributes[0].nodeValue = '#';
     button.textContent = 'go back';
 }
-// console.log(Math.random * 9) + 1);
+
+// random theme
+
 document.querySelector('html').attributes[1].nodeValue = Math.floor(Math.random() * 9) + 1;
 console.log(document.querySelector('html').attributes[1].nodeValue);

@@ -190,7 +190,8 @@ body:has(#projects:target) {
     }
 
     body:has(#projects:target) .hero {
-        height: 20vh;
+        padding: 20px 0px !important;
+        height: 30vh;
     }
 
     body:has(#projects:target) .right-hero {
