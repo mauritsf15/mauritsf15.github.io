@@ -1,6 +1,6 @@
 // animation
 
-const subtext = document.querySelector('h6');
+const subtext = document.querySelector('.animation');
 let subtextLength;
 
 function prepare() {
@@ -20,7 +20,7 @@ function animate() {
     for (i = 0; i < subtextLength; i++) {
         let letter = document.querySelector(`.letter-${i}`)
         setTimeout(function() {letter.style.color = color}, i * 100);
-        setTimeout(function() {letter.style.color = 'white'}, i * 100 + 400);
+        setTimeout(function() {letter.style.color = 'inherit'}, i * 100 + 600);
     }
     setTimeout(animate, i*200 + 1000);
 }
@@ -28,5 +28,31 @@ function animate() {
 prepare();
 setTimeout(animate, 1000);
 
+// bootstrap tooltips
+
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+// action button
+
+const button = document.querySelector('.mau-btn');
+
+function clickBtn() {
+    if (button.attributes[0].nodeValue == '#projects') {
+        button.attributes[0].nodeValue = '#';
+        button.textContent = 'go back';
+    } else {
+        button.attributes[0].nodeValue = '#projects';
+        button.textContent = 'about me';
+    }
+}
+
+button.addEventListener('click', function() {setTimeout(clickBtn, 1)});
+
+if (window.location.href.includes('projects')) {
+    button.attributes[0].nodeValue = '#';
+    button.textContent = 'go back';
+}
+// console.log(Math.random * 9) + 1);
+document.querySelector('html').attributes[1].nodeValue = Math.floor(Math.random() * 9) + 1;
+console.log(document.querySelector('html').attributes[1].nodeValue);
