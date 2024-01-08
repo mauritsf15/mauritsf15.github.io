@@ -1,6 +1,6 @@
 // animation
 
-const subtext = document.querySelector('h6');
+const subtext = document.querySelector('.animation');
 let subtextLength;
 
 function prepare() {
@@ -20,13 +20,15 @@ function animate() {
     for (i = 0; i < subtextLength; i++) {
         let letter = document.querySelector(`.letter-${i}`)
         setTimeout(function() {letter.style.color = color}, i * 100);
-        setTimeout(function() {letter.style.color = 'white'}, i * 100 + 400);
+        setTimeout(function() {letter.style.color = 'inherit'}, i * 100 + 600);
     }
     setTimeout(animate, i*200 + 1000);
 }
 
 prepare();
 setTimeout(animate, 1000);
+
+// bootstrap tooltips
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
