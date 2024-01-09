@@ -165,8 +165,22 @@ body:has(#projects:target) .bi-code-slash:hover {
     font-weight: bold;
 }
 
+.socials i {
+    font-size: 20px;
+    padding: 0px 10px;
+}
+
 body:has(#projects:target) {
     overflow-y: auto;
+}
+
+body:has(#projects:target) .mau-btn {
+    font-size: 14px !important;
+    font-weight: bold;
+}
+
+body:has(#projects:target) .animation {
+    font-size: 16px !important;
 }
 
 @media only screen and (min-width: 768px) {
@@ -189,11 +203,6 @@ body:has(#projects:target) {
         font-size: 8rem;
     }
 
-    .socials i {
-        font-size: 20px;
-        padding: 0px 10px;
-    }
-
     body:has(#projects:target) .bi-code-slash {
         font-size: 3rem;
     }
@@ -209,14 +218,5 @@ body:has(#projects:target) {
 
     body:has(#projects:target) .middle-hero {
         padding: 10px;
-    }
-
-    body:has(#projects:target) .mau-btn {
-        font-size: 14px !important;
-        font-weight: bold;
-    }
-
-    body:has(#projects:target) .animation {
-        font-size: 14px !important;
     }
 }
