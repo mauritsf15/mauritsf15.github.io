@@ -54,7 +54,8 @@ if (window.location.href.includes('projects')) {
     button.textContent = 'go back';
 }
 
-// random theme
+// switch theme button
 
-document.querySelector('html').attributes[1].nodeValue = Math.floor(Math.random() * 9) + 1;
-console.log(document.querySelector('html').attributes[1].nodeValue);
+const switchButton = document.querySelector('.switchtheme');
+
+switchButton.addEventListener('click', toggleTheme);
