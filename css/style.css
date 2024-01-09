@@ -306,4 +306,8 @@ body:has(#projects:target) .animation {
     body:has(#projects:target) .middle-hero {
         padding: 10px;
     }
+
+    body:has(#projects:target) .bi-code-slash:hover {
+        text-shadow: -2px 2px var(--accent), -6px 4px var(--primary);
+    }
 }
