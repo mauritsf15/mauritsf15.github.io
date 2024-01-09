@@ -189,6 +189,11 @@ body:has(#projects:target) {
         font-size: 8rem;
     }
 
+    .socials i {
+        font-size: 20px;
+        padding: 0px 10px;
+    }
+
     body:has(#projects:target) .bi-code-slash {
         font-size: 3rem;
     }
