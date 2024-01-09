@@ -148,7 +148,6 @@ body:has(#projects:target) .bi-code-slash:hover {
 }
 
 .projects {
-    height: 80vh;
     padding-top: 5px;
 }
 
@@ -159,6 +158,11 @@ body:has(#projects:target) .bi-code-slash:hover {
 .project {
     padding: 10px;
     flex: 0.3;
+}
+
+.text-accent {
+    color: var(--primary);
+    font-weight: bold;
 }
 
 body:has(#projects:target) {
@@ -194,7 +198,20 @@ body:has(#projects:target) {
         height: 30vh;
     }
 
-    body:has(#projects:target) .right-hero {
-        display: none;
+    body:has(#projects:target) .right-hero .bi-code-slash {
+        font-size: 20px;
+    }
+
+    body:has(#projects:target) .middle-hero {
+        padding: 10px;
+    }
+
+    body:has(#projects:target) .mau-btn {
+        font-size: 14px !important;
+        font-weight: bold;
+    }
+
+    body:has(#projects:target) .animation {
+        font-size: 14px !important;
     }
 }
