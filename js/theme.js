@@ -6,10 +6,10 @@ let themeTriggered = localStorage.getItem('themeTriggered');
 const number = Math.floor(Math.random() * 9) + 1;
 
 if (theme === null || themeTriggered === null) {
-    theme = 'l';
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
-        theme = 'd';
-
+    theme = 'd';
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+        theme = 'l';
+    
     localStorage.setItem('theme', theme);
     localStorage.setItem('themeTriggered', 'true');
 }
