@@ -2,15 +2,16 @@ const projectsDiv = document.querySelector('.projects');
 const actionButton = document.querySelector('.mau-btn');
 
 let scrolling = false;
-let x = 0;
 let intervalId;
 let right = true;
+let x = 0;
 
 function toggleScroll() {
     if (scrolling) {
+        scrolling = false;
         clearInterval(intervalId);
     } else {
-        console.log('erm');
+        scrolling = true;
         intervalId = setInterval(scroll, 25);
     }   
 }
@@ -24,7 +25,7 @@ function scroll() {
 
     projectsDiv.scroll({
         top: 0,
-        left: x,
+        left: x + 1,
         behavior: "instant",
     })
 }
@@ -35,4 +36,4 @@ if (window.location.hash == '#projects') {
     toggleScroll();
 }
 
-console.log(projectsDiv.offsetWidth);
+projectsDiv.addEventListener('click', console.log('test'));
