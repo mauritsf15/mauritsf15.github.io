@@ -230,7 +230,7 @@ body {
     align-items: center;
     outline: 1px solid var(--text);
     cursor: pointer;
-    z-index: 3;
+    z-index: 5;
 }
 
 .switchtheme .bi-lightbulb-fill {
@@ -262,6 +262,39 @@ body:has(#projects:target) {
     .bi-code-slash:hover {
         text-shadow: -10px 10px var(--primary), -20px 15px var(--secondary);
     }
+}
+
+/* Fade effect */
+
+.faded {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 100%;
+    width: 10vw;
+}
+
+.fade-left {
+    background: linear-gradient(to right, var(--background), rgba(0,0,0,0));
+}
+
+.fade-right {
+    background: linear-gradient(to left, var(--background), rgba(0,0,0,0));
+    right: 0;
+}
+
+/* Projects */
+
+.projects {
+    min-width: 100vw;
+    white-space: nowrap;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.projects::-webkit-scrollbar {
+    display: none;
 }
 
 /* Only on medium + screens */
@@ -318,5 +351,9 @@ body:has(#projects:target) {
         .bi-code-slash:hover {
             text-shadow: -2px 2px var(--accent), -6px 4px var(--primary);
         }
+    }
+
+    .faded {
+        width: 10vw;
     }
 }

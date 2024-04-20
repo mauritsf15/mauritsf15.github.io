@@ -18,7 +18,6 @@ function setTheme(color) {
     theme = color;
     localStorage.setItem('theme', theme);
     document.querySelector('html').dataset.theme = theme + number;
-    console.log(document.querySelector('html').dataset.theme);
 }
 
 function toggleTheme() {
