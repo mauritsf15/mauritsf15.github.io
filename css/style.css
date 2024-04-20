@@ -276,6 +276,7 @@ body:has(#projects:target) {
 
 .fade-left {
     background: linear-gradient(to right, var(--background), rgba(0,0,0,0));
+    left: 0;
 }
 
 .fade-right {
@@ -291,6 +292,7 @@ body:has(#projects:target) {
     overflow-x: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    pointer-events: none;
 }
 
 .projects::-webkit-scrollbar {
@@ -330,6 +332,10 @@ body:has(#projects:target) {
         font-size: 8rem;
     }
 
+    .about-me {
+        padding: 0 10vw;
+    }
+
     body:has(#projects:target) {
         .bi-code-slash {
             font-size: 3rem;
@@ -354,6 +360,6 @@ body:has(#projects:target) {
     }
 
     .faded {
-        width: 10vw;
+        width: 15vw;
     }
 }
