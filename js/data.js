@@ -10,7 +10,7 @@ function loadProjects(jsonData) {
         `
         <div class="project">
             <img class="project-image" src="/img/${project.image}" alt="Screenshot of ${project.title}">
-            <div class="description">
+            <div class="description ${project.background}">
                 <h5>${project.title}</h5>
                 <p>${project.desc}</p>
             </div>
