@@ -5,5 +5,12 @@
         "url": "https://app.aeht.eu/",
         "image": "aeht.png",
         "background": "light"
+    },
+    {
+        "title": "CV",
+        "desc": "Curriculum Vitae for me",
+        "url": "https://cv.mau.bio/",
+        "image": "cv.png",
+        "background": "light"
     }
 ]
