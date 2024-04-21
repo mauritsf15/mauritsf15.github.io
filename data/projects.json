@@ -3,6 +3,14 @@
         "title": "AEHT",
         "desc": "Webapp for events of the European Association for Hotel & Tourism schools",
         "url": "https://app.aeht.eu/",
-        "image": "aeht.png"
+        "image": "aeht.png",
+        "background": "light"
+    },
+    {
+        "title": "CV",
+        "desc": "Curriculum Vitae for me",
+        "url": "https://cv.mau.bio/",
+        "image": "cv.png",
+        "background": "light"
     }
 ]

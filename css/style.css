@@ -220,7 +220,7 @@ body {
 }
 
 .mau-btn-secondary {
-    color: var(--text) !important;
+    color: var(--background) !important;
     background-color: var(--primary);
     padding: 10px 15px;
     transition-duration: 0.3s;
@@ -229,7 +229,7 @@ body {
 
 .mau-btn-secondary:hover {
     box-shadow: inset 0 50px 0 0 var(--accent);
-    color: var(--background) !important;
+    color: var(--text) !important;
 }
 
 /* Switch theme box */
@@ -282,6 +282,7 @@ body:has(#projects:target) {
     position: absolute;
     top: 0;
     z-index: 1;
+    min-height: 100vh;
     height: 100%;
     width: 10vw;
 }
@@ -304,6 +305,7 @@ body:has(#projects:target) {
     overflow-x: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    text-align: center;
 }
 
 .projects::-webkit-scrollbar {
@@ -327,9 +329,21 @@ body:has(#projects:target) {
         > * {
             margin: 5px;
             padding: 5px;
-            background-color: var(--text);
-            background-color: var(--background);
             display: inline-block;
+        }
+    }
+
+    > .light {
+        > * {
+            background-color: whitesmoke;
+            color: darkslategray;
+        }
+    }
+
+    > .dark {
+        > * {
+            background-color: darkslategray;
+            color: whitesmoke;
         }
     }
 

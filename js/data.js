@@ -10,11 +10,11 @@ function loadProjects(jsonData) {
         `
         <div class="project">
             <img class="project-image" src="/img/${project.image}" alt="Screenshot of ${project.title}">
-            <div class="description">
-                <h5>${project.title}</h5>
+            <div class="description ${project.background}">
+                <h5>${project.title}</h5><br>
                 <p>${project.desc}</p>
             </div>
-            <a class="mau-btn-secondary" href="${project.url}" target="_blank">view product</a>
+            <a class="mau-btn-secondary" href="${project.url}" target="_blank">open website</a>
         </div>
         `;
     }
