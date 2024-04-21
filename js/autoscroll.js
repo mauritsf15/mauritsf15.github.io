@@ -25,7 +25,7 @@ function scroll() {
 
     projectsDiv.scroll({
         top: 0,
-        left: x + 1,
+        left: x,
         behavior: "instant",
     })
 }
@@ -35,5 +35,3 @@ actionButton.addEventListener('click', toggleScroll);
 if (window.location.hash == '#projects') {
     toggleScroll();
 }
-
-projectsDiv.addEventListener('click', console.log('test'));
