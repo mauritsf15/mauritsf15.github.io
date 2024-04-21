@@ -285,6 +285,7 @@ body:has(#projects:target) {
     min-height: 100vh;
     height: 100%;
     width: 10vw;
+    pointer-events: none;
 }
 
 .fade-left {

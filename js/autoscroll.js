@@ -13,7 +13,7 @@ function toggleScroll() {
     } else {
         scrolling = true;
         intervalId = setInterval(scroll, 25);
-    }   
+    }
 }
 
 function scroll() {
