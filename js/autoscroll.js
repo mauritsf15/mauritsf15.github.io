@@ -1,4 +1,3 @@
-const projectsDiv = document.querySelector('.projects');
 const actionButton = document.querySelector('.mau-btn');
 
 let scrolling = false;
@@ -35,3 +34,5 @@ actionButton.addEventListener('click', toggleScroll);
 if (window.location.hash == '#projects') {
     toggleScroll();
 }
+
+projectsDiv.addEventListener('scroll', function() {console.log(projectsDiv.client)});
