@@ -12,5 +12,12 @@
         "url": "https://cv.mau.bio/",
         "image": "cv.png",
         "background": "dark"
+    },
+    {
+        "title": "CV",
+        "desc": "Curriculum Vitae for me",
+        "url": "https://cv.mau.bio/",
+        "image": "cv.png",
+        "background": "dark"
     }
 ]

@@ -1,3 +1,6 @@
+// variables
+const projectsDiv = document.querySelector('.projects');
+
 // animation
 
 const subtext = document.querySelector('.animation');

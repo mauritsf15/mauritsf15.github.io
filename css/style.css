@@ -303,7 +303,7 @@ body:has(#projects:target) {
 .projects {
     min-width: 100vw;
     white-space: nowrap;
-    overflow-x: hidden;
+    overflow-x: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     text-align: center;
