@@ -307,6 +307,21 @@ body:has(#projects:target) {
     -ms-overflow-style: none;
     scrollbar-width: none;
     text-align: center;
+
+    transition-property: transform filter;
+    transition-duration: 0.2s;
+
+    cursor: grab;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+
+.mouse-down {
+    transform: scale(0.98);
+    filter: contrast(105%);
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
 }
 
 .projects::-webkit-scrollbar {
@@ -316,6 +331,10 @@ body:has(#projects:target) {
 .project {
     display: inline-block;
     position: relative;
+    
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     > .description {
         position: absolute;
@@ -356,6 +375,7 @@ body:has(#projects:target) {
 
     > .project-image {
         height: 400px;
+        pointer-events: none;
     }
 }
 
@@ -420,6 +440,6 @@ body:has(#projects:target) {
     }
 
     .faded {
-        width: 15vw;
+        width: 5vw;
     }
 }

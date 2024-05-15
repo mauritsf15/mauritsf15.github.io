@@ -9,7 +9,7 @@ function loadProjects(jsonData) {
         projectsDiv.innerHTML +=
         `
         <div class="project">
-            <img class="project-image" src="/img/${project.image}" alt="Screenshot of ${project.title}">
+            <img class="project-image" src="/img/${project.image}" alt="Screenshot of ${project.title}" unselectable="on">
             <div class="description ${project.background}">
                 <h5>${project.title}</h5><br>
                 <p>${project.desc}</p>
