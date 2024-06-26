@@ -7,6 +7,20 @@
         "background": "light"
     },
     {
+        "title": "AEHT App",
+        "desc": "Native Android app for the AEHT webapp",
+        "url": "https://play.google.com/store/apps/details?id=eu.aeht.app",
+        "image": "app.jpg",
+        "background": "dark"
+    },
+    {
+        "title": "Innotecs",
+        "desc": "Webapp for events of the Innotecs organization",
+        "url": "https://innotecs.eu/",
+        "image": "innotecs.png",
+        "background": "dark"
+    },
+    {
         "title": "CV",
         "desc": "Curriculum Vitae for me",
         "url": "https://cv.mau.bio/",
