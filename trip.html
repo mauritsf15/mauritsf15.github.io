@@ -78,7 +78,8 @@
 
         /* --- Table Styles --- */
         .table-wrapper {
-            overflow-x: auto; /* Makes table responsive */
+            overflow-x: auto; /* Makes table responsive by adding a scrollbar */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         }
         
         table {
@@ -92,6 +93,13 @@
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
+            white-space: nowrap; /* Prevents text from wrapping in the main table */
+        }
+        
+        /* Allow text in the smaller cost table to wrap */
+        .cost-summary-card table th,
+        .cost-summary-card table td {
+             white-space: normal;
         }
 
         thead th {
@@ -112,12 +120,14 @@
             border: 1px solid var(--border-color);
             border-radius: 6px;
             margin-bottom: 1.5rem;
+            overflow: auto; /* Ensure chart can be scrolled if too wide */
         }
 
-        /* --- Accommodation & Cost Section Styles --- */
+        /* --- Card Layout for Accommodation & Costs --- */
         .card-grid {
             display: grid;
             gap: 1.5rem;
+            /* This is the magic for a responsive grid. It creates as many 280px columns as fit */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
 
@@ -158,6 +168,25 @@
         
         .cost-summary-card th {
             background-color: transparent;
+        }
+
+        /* --- RESPONSIVE STYLES --- */
+        /* This media query applies styles only for screens 768px wide or smaller (tablets and phones) */
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem auto;
+                padding: 1rem 1rem; /* Reduce side padding on small screens */
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            h1 {
+                font-size: 2rem; /* Reduce heading size */
+            }
+
+            h2 {
+                font-size: 1.5rem; /* Reduce subheading size */
+            }
         }
 
     </style>
@@ -334,7 +363,7 @@ gantt
                 </ul>
             </div>
             <div class="card">
-                <h4>Edit's Place - €298</h4>
+                <h4>Edit’s Place - €298</h4>
                 <ul>
                     <li>Bed Type: Single beds + sofa bed</li>
                     <li>Features: Entire apartment, Best location</li>
