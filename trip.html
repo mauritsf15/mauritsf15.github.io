@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip Itinerary: Netherlands to Budapest & Back</title>
+    <title>Interactive Trip Itinerary: Netherlands to Budapest</title>
     <style>
         /* --- Global Styles & Typography --- */
         :root {
@@ -36,159 +36,76 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
-        h1, h2, h3 {
-            color: var(--heading-color);
+        h1, h2, h3 { color: var(--heading-color); font-weight: 600; line-height: 1.2; }
+        h1 { font-size: 2.5rem; color: var(--primary-color); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+        h2 { font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1.2rem; border-left: 4px solid var(--primary-color); padding-left: 0.8rem; }
+        h3 { font-size: 1.4rem; color: var(--primary-color); margin-top: 2rem; margin-bottom: 1rem; }
+        p { margin-bottom: 1rem; }
+        hr { border: 0; height: 1px; background: var(--border-color); margin: 3rem 0; }
+        
+        /* --- Controls Section --- */
+        .controls-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+        .controls-section label {
             font-weight: 600;
-            line-height: 1.2;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1.2rem;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 0.8rem;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: var(--border-color);
-            margin: 3rem 0;
+        .controls-section input {
+            padding: 8px;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 80px;
         }
 
         /* --- Table Styles --- */
-        .table-wrapper {
-            overflow-x: auto; /* Makes table responsive by adding a scrollbar */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            font-size: 0.95em;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-            white-space: nowrap; /* Prevents text from wrapping in the main table */
-        }
-        
-        /* Allow text in the smaller cost table to wrap */
-        .cost-summary-card table th,
-        .cost-summary-card table td {
-             white-space: normal;
-        }
-
-        thead th {
-            background-color: var(--table-header-bg);
-            font-weight: 600;
-            color: var(--heading-color);
-        }
-
-        tbody tr:hover {
-            background-color: var(--table-row-hover);
-        }
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.95em; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
+        .cost-summary-card table th, .cost-summary-card table td, .grand-total-card table th, .grand-total-card table td { white-space: normal; }
+        thead th { background-color: var(--table-header-bg); font-weight: 600; color: var(--heading-color); }
+        tbody tr:hover { background-color: var(--table-row-hover); }
 
         /* --- Mermaid Gantt Chart Styles --- */
-        .mermaid {
-            text-align: center;
-            padding: 1rem;
-            background: #fdfdfd;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-bottom: 1.5rem;
-            overflow: auto; /* Ensure chart can be scrolled if too wide */
-        }
+        .mermaid { text-align: center; padding: 1rem; background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 1.5rem; overflow: auto; }
 
         /* --- Card Layout for Accommodation & Costs --- */
-        .card-grid {
-            display: grid;
-            gap: 1.5rem;
-            /* This is the magic for a responsive grid. It creates as many 280px columns as fit */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
-        .card {
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .card h4 {
-            margin: 0 0 0.75rem 0;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
+        .card-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .card { background: var(--card-background); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.04); transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out; }
         
-        .card ul {
-            padding-left: 20px;
-            margin: 0;
-            color: #555;
-        }
-        
-        .card li {
-            margin-bottom: 0.25rem;
+        /* -- Interactive Card Styles -- */
+        .card[data-price] { cursor: pointer; }
+        .card.selected {
+            border-color: var(--primary-color);
+            box-shadow: 0 6px 16px rgba(0, 119, 182, 0.2);
+            transform: translateY(-2px);
         }
 
-        .cost-summary-card {
-            background: #f0faff; /* Light blue background */
-            border-left: 5px solid var(--secondary-color);
-        }
-        
-        .cost-summary-card th {
-            background-color: transparent;
-        }
+        .card h4 { margin: 0 0 0.75rem 0; font-size: 1.2rem; color: var(--primary-color); }
+        .card ul { padding-left: 20px; margin: 0; color: #555; }
+        .card li { margin-bottom: 0.25rem; }
 
-        /* --- RESPONSIVE STYLES --- */
-        /* This media query applies styles only for screens 768px wide or smaller (tablets and phones) */
+        .cost-summary-card { background: #f0faff; border-left: 5px solid var(--secondary-color); }
+        .cost-summary-card th { background-color: transparent; }
+        
+        /* -- Grand Total Card -- */
+        .grand-total-card { margin-top: 2rem; background: #e8f5e9; border-left: 5px solid #4caf50; }
+        .grand-total-card table { font-size: 1.1em; }
+        .grand-total-card table td, .grand-total-card table th { border: none; padding: 8px 15px; }
+        .grand-total-card #grand-total-row { font-size: 1.25em; font-weight: bold; color: #2e7d32; border-top: 1px solid #a5d6a7; }
+
+        /* --- Responsive Styles --- */
         @media (max-width: 768px) {
-            .container {
-                margin: 1rem auto;
-                padding: 1rem 1rem; /* Reduce side padding on small screens */
-                border-radius: 0;
-                box-shadow: none;
-            }
-
-            h1 {
-                font-size: 2rem; /* Reduce heading size */
-            }
-
-            h2 {
-                font-size: 1.5rem; /* Reduce subheading size */
-            }
+            .container { margin: 1rem auto; padding: 1rem 1rem; border-radius: 0; box-shadow: none; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
         }
-
     </style>
 </head>
 <body>
@@ -271,7 +188,7 @@ gantt
 gantt
     title Side Trip: Wien → Brno & Back (August 8-9)
     dateFormat YYYY-MM-DD HH:mm
-    axisFormat %d %b %H:%M
+    axisFormat %H:%M
     
     section to Brno
     Train: Wien → Brno : 2024-08-08 14:39, 2024-08-08 16:07
@@ -316,60 +233,6 @@ gantt
     section to Leiden
     Train: Amsterdam → Leiden : 2024-08-16 10:06, 2024-08-16 10:43
         </div>
-
-        <hr>
-
-        <h2>Accommodation Options</h2>
-
-        <h3>Vienna (Wenen) - <em>5 Nights: Aug 6 → Aug 11</em></h3>
-        <div class="card-grid">
-            <div class="card">
-                <h4>Aparthotel Residence - €260</h4>
-                <ul>
-                    <li>Bed Type: Double bed</li>
-                    <li>Location: Good</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h4>Hotel Hadrigan - €274</h4>
-                <ul>
-                    <li>Bed Type: Single beds</li>
-                    <li>Location: Fair</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h4>Vienna Rooms Nr 11 - €297</h4>
-                <ul>
-                    <li>Bed Type: Single beds</li>
-                    <li>Location: Best</li>
-                </ul>
-            </div>
-        </div>
-
-        <h3 style="margin-top: 2.5rem;">Budapest - <em>4 Nights: Aug 11 → Aug 15</em></h3>
-        <div class="card-grid">
-            <div class="card">
-                <h4>Fanni Budapest Guesthouse - €202</h4>
-                <ul>
-                    <li>Bed Type: Single beds</li>
-                    <li>Location: Good</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h4>Vivien Apartment - €217</h4>
-                <ul>
-                    <li>Bed Type: Single beds</li>
-                    <li>Location: Good</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h4>Edit’s Place - €298</h4>
-                <ul>
-                    <li>Bed Type: Single beds + sofa bed</li>
-                    <li>Features: Entire apartment, Best location</li>
-                </ul>
-            </div>
-        </div>
         
         <hr>
 
@@ -402,11 +265,167 @@ gantt
 
     </div>
 
+    <div class="container">
+        <h1>Interactive Trip Itinerary</h1>
+        <p>This tool helps calculate the per-person cost of the trip. The default selections are the most expensive options. Click a hotel or change the number of travelers to update the totals.</p>
+        
+        <hr>
+
+        <h2>Cost Calculator</h2>
+
+        <h3>Accommodation Options (Total Price)</h3>
+        <p>Click on an accommodation option to select it.</p>
+        
+        <h4>Vienna (Wenen) - <em>5 Nights: Aug 6 → Aug 11</em></h4>
+        <div class="card-grid">
+            <div class="card" data-price="260" data-group="vienna">
+                <h4>Aparthotel Residence - €260</h4>
+                <ul><li>Bed Type: Double bed</li><li>Location: Good</li></ul>
+            </div>
+            <div class="card" data-price="274" data-group="vienna">
+                <h4>Hotel Hadrigan - €274</h4>
+                <ul><li>Bed Type: Single beds</li><li>Location: Fair</li></ul>
+            </div>
+            <div class="card" data-price="297" data-group="vienna">
+                <h4>Vienna Rooms Nr 11 - €297</h4>
+                <ul><li>Bed Type: Single beds</li><li>Location: Best</li></ul>
+            </div>
+        </div>
+
+        <h4 style="margin-top: 2.5rem;">Budapest - <em>4 Nights: Aug 11 → Aug 15</em></h4>
+        <div class="card-grid">
+            <div class="card" data-price="202" data-group="budapest">
+                <h4>Fanni Budapest Guesthouse - €202</h4>
+                <ul><li>Bed Type: Single beds</li><li>Location: Good</li></ul>
+            </div>
+            <div class="card" data-price="217" data-group="budapest">
+                <h4>Vivien Apartment - €217</h4>
+                <ul><li>Bed Type: Single beds</li><li>Location: Good</li></ul>
+            </div>
+            <div class="card" data-price="298" data-group="budapest">
+                <h4>Edit’s Place - €298</h4>
+                <ul><li>Bed Type: Single beds + sofa bed</li><li>Features: Entire apartment, Best location</li></ul>
+            </div>
+        </div>
+        
+        <h3 style="margin-top: 2.5rem;">Cost Breakdown</h3>
+        <div class="cost-summary-card">
+            <table>
+                <thead>
+                    <tr><th>Fixed Travel Costs (per person)</th><th>Price pp (€)</th></tr>
+                </thead>
+                <tbody>
+                    <!-- Travel costs... -->
+                    <tr style="font-weight: bold; background-color: #d1ecfa;">
+                        <td>Total Travel Costs</td>
+                        <td id="travel-total">€177.68</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card grand-total-card">
+             <table>
+                <tbody>
+                    <tr>
+                        <td>Total Accommodation Cost:</td>
+                        <td id="total-accommodation-cost" style="text-align: right;">€0.00</td>
+                    </tr>
+                     <tr>
+                        <td>Accommodation (per person):</td>
+                        <td id="accommodation-per-person" style="text-align: right;">€0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Travel Cost (per person):</td>
+                        <td id="travel-cost-per-person" style="text-align: right;">€0.00</td>
+                    </tr>
+                    <tr id="grand-total-row">
+                        <td>Grand Total (per person):</td>
+                        <td id="grand-total" style="text-align: right;">€0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <hr>
+
+    </div>
+
+    <!-- Main Calculation & Interaction Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accommodationCards = document.querySelectorAll('.card[data-price]');
+            const travelTotalEl = document.getElementById('travel-total');
+            const totalAccommodationCostEl = document.getElementById('total-accommodation-cost');
+            const accommodationPerPersonEl = document.getElementById('accommodation-per-person');
+            const travelCostPerPersonEl = document.getElementById('travel-cost-per-person');
+            const grandTotalEl = document.getElementById('grand-total');
+
+            function updateTotals() {
+                // 1. Set the number of travelers
+                const numTravelers = 2;
+
+                // 2. Calculate TOTAL accommodation cost from selected cards
+                let accommodationTotal = 0;
+                document.querySelectorAll('.card.selected[data-price]').forEach(card => {
+                    accommodationTotal += parseFloat(card.dataset.price);
+                });
+
+                // 3. Calculate PER PERSON accommodation cost
+                const accommodationPerPerson = accommodationTotal / numTravelers;
+
+                // 4. Get Fixed Travel Total (per person)
+                const travelTotal = parseFloat(travelTotalEl.textContent.replace('€', ''));
+
+                // 5. Calculate Grand Total (per person)
+                const grandTotal = accommodationPerPerson + travelTotal;
+
+                // 6. Update the DOM with formatted prices
+                totalAccommodationCostEl.textContent = `€${accommodationTotal.toFixed(2)}`;
+                accommodationPerPersonEl.textContent = `€${accommodationPerPerson.toFixed(2)}`;
+                travelCostPerPersonEl.textContent = `€${travelTotal.toFixed(2)}`;
+                grandTotalEl.textContent = `€${grandTotal.toFixed(2)}`;
+            }
+
+            function handleCardClick(event) {
+                const clickedCard = event.currentTarget;
+                const group = clickedCard.dataset.group;
+
+                document.querySelectorAll(`.card[data-group="${group}"]`).forEach(card => card.classList.remove('selected'));
+                clickedCard.classList.add('selected');
+                updateTotals();
+            }
+
+            function init() {
+                // Group cards by city
+                const groups = {};
+                accommodationCards.forEach(card => {
+                    const groupName = card.dataset.group;
+                    if (!groups[groupName]) groups[groupName] = [];
+                    groups[groupName].push(card);
+                });
+
+                // For each group, select the most expensive card by default
+                for (const groupName in groups) {
+                    const mostExpensiveCard = groups[groupName].reduce((max, card) => parseFloat(card.dataset.price) > parseFloat(max.dataset.price) ? card : max);
+                    mostExpensiveCard.classList.add('selected');
+                }
+
+                // Add event listeners
+                accommodationCards.forEach(card => card.addEventListener('click', handleCardClick));
+
+                // Perform the initial calculation on page load
+                updateTotals();
+            }
+
+            init();
+        });
+    </script>
+    
     <!-- Mermaid.js Script for rendering charts -->
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true });
     </script>
-
 </body>
 </html>
