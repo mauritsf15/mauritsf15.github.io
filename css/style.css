@@ -338,33 +338,43 @@ body:has(#projects:target) {
 
     > .description {
         position: absolute;
-        bottom: 5px;
-        right: 5px;
+        bottom: 20px;
+        right: 10px;
         margin: 0;
-        padding: 5px;
-        max-width: 50%;
+        padding: 15px 20px;
+        max-width: 60%;
         white-space: wrap;
-        text-align: end;
+        text-align: left;
+        border-radius: 8px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
-        > * {
-            margin: 5px;
-            padding: 5px;
-            display: inline-block;
+        > h5 {
+            margin: 0 0 10px 0;
+            padding: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        > p {
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-weight: 500;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
     }
 
     > .light {
-        > * {
-            background-color: whitesmoke;
-            color: darkslategray;
-        }
+        background-color: rgba(245, 245, 245, 0.95);
+        color: #2f4f4f;
     }
 
     > .dark {
-        > * {
-            background-color: darkslategray;
-            color: whitesmoke;
-        }
+        background-color: rgba(47, 79, 79, 0.95);
+        color: #f5f5f5;
     }
 
     > a {
@@ -376,6 +386,21 @@ body:has(#projects:target) {
     > .project-image {
         height: 400px;
         pointer-events: none;
+    }
+}
+
+.last-project {
+    > .description {
+        bottom: 20px;
+        left: 10px;
+        right: auto;
+        text-align: left;
+    }
+
+    > a {
+        top: 10px;
+        left: 10px;
+        right: auto;
     }
 }
 
