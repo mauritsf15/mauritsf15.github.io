@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Status: Pending</title>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --bg: #2f3542;
+            --text: #ffffff;
+            --card-bg: #57606f;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace; /* Monospace for that "tech" feel */
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 90%;
+            width: 400px;
+            padding: 20px;
+        }
+
+        /* --- LOADING STATE --- */
+        #loading-screen {
+            display: block;
+        }
+
+        .gift-box {
+            font-size: 80px;
+            animation: bounce 1s infinite alternate;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #444;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .status-text {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* --- ERROR STATE --- */
+        #error-screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .message-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-top: 20px;
+        }
+
+        .message-card p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-family: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes bounce {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Shake animation for the last second */
+        @keyframes panic {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="loading-screen">
+            <div class="gift-box" id="gift-icon">🎁</div>
+            <div class="status-text" id="status-text">Connecting to North Pole Logistics...</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <div id="error-screen">
+            <h1 class="error-code">408</h1>
+            <h2 class="error-title">REQUEST TIMEOUT</h2>
+            
+            <div class="message-card">
+                <p><strong>Error: Gift Payload Too Heavy</strong></p>
+                <p>The server was unable to deliver the package "CHRISTMAS_PRESENTS.zip" within the expected timeframe.</p>
+                <p><em>Reason: Lost in traffic. Currently routed through a scenic detour.</em></p>
+                <hr style="border-color: #777; opacity: 0.3;">
+                <p><strong>Estimated Resolution:</strong> Very Soon™</p>
+            </div>
+
+            <a href="#" onclick="location.reload()" class="btn">Try Again</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Configuration
+        const duration = 4500; // How long the loading takes (ms)
+        const loadingScreen = document.getElementById('loading-screen');
+        const errorScreen = document.getElementById('error-screen');
+        const progressFill = document.getElementById('progress-fill');
+        const statusText = document.getElementById('status-text');
+        const giftIcon = document.getElementById('gift-icon');
+
+        // Messages to cycle through while loading
+        const messages = [
+            "Connecting to Logistics...",
+            "Locating Reindeer...",
+            "Buffering Holiday Spirit...",
+            "Packet Loss Detected...",
+            "Retrying..."
+        ];
+
+        let startTime = null;
+
+        function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const runtime = timestamp - startTime;
+            const progress = Math.min(runtime / duration, 1);
+
+            // Update Progress Bar
+            progressFill.style.width = (progress * 95) + '%'; // Stuck at 95%
+
+            // Update Text based on progress chunks
+            const msgIndex = Math.floor(progress * messages.length);
+            if (messages[msgIndex]) {
+                statusText.innerText = messages[msgIndex];
+            }
+
+            // At 80% progress, make the gift shake nervously (panic mode)
+            if (progress > 0.8) {
+                giftIcon.style.animation = "panic 0.5s infinite";
+                statusText.style.color = "#ff6b6b";
+            }
+
+            if (runtime < duration) {
+                requestAnimationFrame(animate);
+            } else {
+                // Animation Complete -> Trigger Error
+                triggerError();
+            }
+        }
+
+        function triggerError() {
+            loadingScreen.style.display = 'none';
+            errorScreen.style.display = 'block';
+            
+            // Allow a tiny reflow before fading in for the CSS transition to work
+            setTimeout(() => {
+                errorScreen.style.opacity = '1';
+            }, 50);
+        }
+
+        // Start the animation
+        requestAnimationFrame(animate);
+
+    </script>
+</body>
+</html>
