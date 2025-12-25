@@ -1,4 +1,4 @@
-import SpeedTest from 'https://unpkg.com/@cloudflare/speedtest@1.0.0/dist/index.mjs';
+import SpeedTest from 'https://esm.sh/@cloudflare/speedtest';
 
 // --- Configuration ---
 const REPORTING_URL = 'https://reqres.in/api/speedtest-logs'; // Replace with your server URL
