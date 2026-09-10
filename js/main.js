@@ -1,64 +1,34 @@
-// variables
-const projectsDiv = document.querySelector('.projects');
-
-// animation
-
-const subtext = document.querySelector('.animation');
-let subtextLength;
-
-function prepare() {
-    let localText = '';
-    subtextLength = subtext.innerText.length;
-    for (let i = 0; i < subtext.innerText.length; i++) {
-        localText += `<span class="letter-${i} letter">${subtext.innerText.charAt(i)}</span>`;
+(() => {
+    const explore = document.querySelector('.explore-button');
+    function syncView() {
+        const expanded = location.hash === '#projects';
+        document.body.classList.toggle('is-exploring', expanded);
+        explore.setAttribute('aria-expanded', String(expanded));
+        explore.href = expanded ? '#' : '#projects';
+        explore.querySelector('.explore-label').textContent = expanded ? 'Back to the intro' : 'A bit about me & my work';
+        explore.querySelector('.button-arrow').textContent = expanded ? '↑' : '↓';
     }
-    subtext.innerHTML = localText;
-}
-
-function animate() {
-    let rand = Math.round(Math.random()*200 + 55);
-    let rand2 = Math.round(Math.random()*200 + 55);
-    let rand3 = Math.round(Math.random()*200 + 55);
-    let color = `rgb(${rand}, ${rand2}, ${rand3})`;
-    for (i = 0; i < subtextLength; i++) {
-        let letter = document.querySelector(`.letter-${i}`)
-        setTimeout(function() {letter.style.color = color}, i * 100);
-        setTimeout(function() {letter.style.color = 'inherit'}, i * 100 + 600);
+    window.addEventListener('hashchange', syncView);
+    syncView();
+    const today = new Date();
+    const beforeBirthday = today.getMonth() < 6 || (today.getMonth() === 6 && today.getDate() < 5);
+    document.querySelector('#age').textContent = today.getFullYear() - 2004 - Number(beforeBirthday);
+    const themeButton = document.querySelector('.theme-toggle');
+    function syncTheme() {
+        const dark = document.documentElement.dataset.theme === 'dark';
+        themeButton.setAttribute('aria-label', `Switch to ${dark ? 'light' : 'dark'} theme`);
+        themeButton.querySelector('.theme-label').textContent = dark ? 'Light mode' : 'Dark mode';
+        document.querySelector('meta[name="theme-color"]').content = dark ? '#171817' : '#f4f3ed';
     }
-    setTimeout(animate, i*200 + 1000);
-}
-
-prepare();
-setTimeout(animate, 1000);
-
-// bootstrap tooltips
-
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-// action button
-
-const button = document.querySelector('.mau-btn');
-
-function clickBtn() {
-    if (button.attributes[0].nodeValue == '#projects') {
-        button.attributes[0].nodeValue = '#';
-        button.textContent = 'go back';
-    } else {
-        button.attributes[0].nodeValue = '#projects';
-        button.textContent = 'about me';
-    }
-}
-
-button.addEventListener('click', function() {setTimeout(clickBtn, 1)});
-
-if (window.location.href.includes('projects')) {
-    button.attributes[0].nodeValue = '#';
-    button.textContent = 'go back';
-}
-
-// switch theme button
-
-const switchButton = document.querySelector('.switchtheme');
-
-switchButton.addEventListener('click', toggleTheme);
+    themeButton.addEventListener('click', window.toggleTheme);
+    window.addEventListener('themechange', syncTheme);
+    syncTheme();
+    let statusTimer;
+    document.querySelector('.discord').addEventListener('click', async () => {
+        const status = document.querySelector('#copy-status');
+        clearTimeout(statusTimer);
+        try { await navigator.clipboard.writeText('mauf55'); status.textContent = 'Copied @mauf55'; }
+        catch { status.textContent = 'Discord: @mauf55'; }
+        statusTimer = setTimeout(() => { status.textContent = ''; }, 5000);
+    });
+})();
