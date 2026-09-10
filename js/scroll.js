@@ -39,6 +39,7 @@
     let didDrag = false;
     gallery.addEventListener('pointerdown', event => {
         if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('a,button')) return;
+        gallery.scrollTo({left: gallery.scrollLeft, behavior: 'instant'});
         drag = {x: event.clientX, left: gallery.scrollLeft};
         didDrag = false;
     });
@@ -50,7 +51,12 @@
             gallery.scrollLeft = drag.left - (event.clientX - drag.x);
         }
     });
-    function endDrag() { drag = null; gallery.classList.remove('is-dragging'); }
+    function endDrag() {
+        const shouldSettle = drag && didDrag;
+        drag = null;
+        gallery.classList.remove('is-dragging');
+        if (shouldSettle) move(0);
+    }
     window.addEventListener('pointerup', endDrag);
     window.addEventListener('pointercancel', endDrag);
     window.addEventListener('blur', endDrag);
